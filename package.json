@@ -1,0 +1,13 @@
+{
+  "name": "ocr-bot",
+  "version": "1.0.0",
+  "description": "OP Bot",
+  "main": "bot.js",
+  "author": "xRoyalPhantom",
+  "dependencies": {
+    "discord-reply": "^0.1.2",
+    "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
+    "tesseract.js": "^2.1.5",
+    "winston": "^3.6.0"
+  }
+}
