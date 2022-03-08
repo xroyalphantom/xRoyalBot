@@ -99,8 +99,8 @@ client.on("message", (message) => {
 
 //auth.token
 client.login(
-    "OTUwMjQ2ODQ2ODA1MTkyNzA0.YiWIVw.Tqwb4l8C74FH0-IzJkr9-8GIyss"
-    //process.env.DJS_TOKEN
+    
+    process.env.DJS_TOKEN
     );
 
 
