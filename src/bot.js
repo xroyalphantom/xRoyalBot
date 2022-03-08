@@ -1,9 +1,27 @@
 var Discord = require('discord.js');
 //var auth = require('./auth.json');
 var Tesseract = require("tesseract.js");
+var mobilenet = require('@tensorflow-models/mobilenet');
 require('discord-reply');
 
+let model;
 var client = new Discord.Client();
+
+
+function displayDescription(predictions) {
+    //Sort by probability
+    const result = predictions.sort((a, b) => a > b)[0];
+  
+    if (result.probability > 0.2) {
+        const probability = Math.round(result.probability * 100);
+  
+        return `${probability}% confident this is a ${result.className.replace(
+            ",",
+            " or"
+        )}`;
+    } else return "No clue";
+}
+  
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
@@ -16,19 +34,29 @@ client.on("message", (message) => {
         args = args.splice(1);
         switch(cmd) {
             case 'help':
-                message.lineReply("Available Commands:\n\n");
+                message.lineReply(
+                    "Available Commands:\n\n" +
+                    "!coinflip - Heads or Tails\n" +
+                    "!ocr - Include image after the command to anaylze text present in the image\n"
+                    );
+                break;
+            case 'coinflip':
+                var int = Math.floor((Math.random() * 2) + 1);
+                if(int === 1) message.lineReply("Heads");
+                else message.lineReply("Tails");
                 break;
             case 'ocr':
                 if (message.attachments.size > 0) {
                     message.attachments.forEach((attachment) => {
-                        var ImageURL = attachment.proxyURL;
+                        var ImageUrl = attachment.proxyURL;
                         Tesseract.recognize(
-                            ImageURL,
+                            ImageUrl,
                             "eng",
                             { logger: (m) => console.log(m) }
                         ).then(({ data: { text } }) => {
                             console.log(text);
-                            message.lineReply("Text observed:\n\n" + text);
+                            if(text === "") text = "No characters could be read";
+                            message.lineReply("Text observed:\n\n" +  text);
                         });
                     });
                 }
@@ -36,16 +64,43 @@ client.on("message", (message) => {
                     message.lineReply("Unable to scan");
                 }
                 break;
-            case 'coinflip':
-                var int = Math.floor((Math.random() * 2) + 1);
-                if(int === 1) message.lineReply("Heads");
-                else message.lineReply("Tails");
-                break;
+            case 'recognize':
+                if (message.attachments.size > 0) {
+
+                    message.lineReply("Not yet implemented");
+                    /*
+                    message.attachments.forEach((attachment) => {
+                        var ImageUrl = attachment.url;
+                        model.classify(ImageUrl).then((predictions) => {
+                            const result = predictions.sort((a, b) => a > b)[0];
+                            var text = "";
+                            if (result.probability > 0.2) {
+                                const probability = Math.round(result.probability * 100);
+                                text = `${probability}% confident this is a ${result.className.replace(","," or")}`;
+                            } else {
+                                text = "Image cannot be analyzed";
+                            }
+                            message.lineReply(text);
+                        });
+                    });
+                    */
+                }
+                else {
+                    message.lineReply("Unable to recognize");
+                }
         }
     } 
-  });
+});
   
 
-  //auth.token
-  client.login(process.env.DJS_TOKEN);
+//auth.token
+client.login(
+    
+    process.env.DJS_TOKEN
+    );
+
+
+mobilenet.load().then((m) => {
+    model = m;
+});
   
