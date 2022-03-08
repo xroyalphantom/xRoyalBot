@@ -15,6 +15,9 @@ client.on("message", (message) => {
         var cmd = args[0];
         args = args.splice(1);
         switch(cmd) {
+            case 'help':
+                message.lineReply("Available Commands:\n\n");
+                break;
             case 'ocr':
                 if (message.attachments.size > 0) {
                     message.attachments.forEach((attachment) => {
