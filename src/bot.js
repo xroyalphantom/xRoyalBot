@@ -1,27 +1,15 @@
 var Discord = require('discord.js');
-//var auth = require('./auth.json');
 var Tesseract = require("tesseract.js");
 var mobilenet = require('@tensorflow-models/mobilenet');
 require('discord-reply');
 
 let model;
+
+mobilenet.load().then((m) => {
+    model = m;
+});
+
 var client = new Discord.Client();
-
-
-function displayDescription(predictions) {
-    //Sort by probability
-    const result = predictions.sort((a, b) => a > b)[0];
-  
-    if (result.probability > 0.2) {
-        const probability = Math.round(result.probability * 100);
-  
-        return `${probability}% confident this is a ${result.className.replace(
-            ",",
-            " or"
-        )}`;
-    } else return "No clue";
-}
-  
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
@@ -36,7 +24,7 @@ client.on("message", (message) => {
             case 'help':
                 message.lineReply(
                     "Available Commands:\n\n" +
-                    "!about - Information about xRoyalBot" +
+                    "!about - Information about xRoyalBot\n" +
                     "!coinflip - Heads or Tails\n" +
                     "!ocr - Include image after the command to anaylze text present in the image\n"
                     );
@@ -102,9 +90,4 @@ client.login(
     
     process.env.DJS_TOKEN
     );
-
-
-mobilenet.load().then((m) => {
-    model = m;
-});
   
