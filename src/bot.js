@@ -1,5 +1,5 @@
 var Discord = require('discord.js');
-var auth = require('./auth.json');
+//var auth = require('./auth.json');
 var Tesseract = require("tesseract.js");
 require('discord-reply');
 
@@ -43,4 +43,6 @@ client.on("message", (message) => {
   });
   
 
-  client.login(auth.token);
+  //originally auth.token
+  client.login(process.env.DJS_TOKEN);
+  
