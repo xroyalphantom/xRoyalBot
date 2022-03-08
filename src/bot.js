@@ -43,6 +43,6 @@ client.on("message", (message) => {
   });
   
 
-  //originally auth.token
+  //auth.token
   client.login(process.env.DJS_TOKEN);
   
