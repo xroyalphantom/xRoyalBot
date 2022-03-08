@@ -36,9 +36,13 @@ client.on("message", (message) => {
             case 'help':
                 message.lineReply(
                     "Available Commands:\n\n" +
+                    "!about - Information about xRoyalBot" +
                     "!coinflip - Heads or Tails\n" +
                     "!ocr - Include image after the command to anaylze text present in the image\n"
                     );
+                break;
+            case 'about':
+                message.lineReply("xRoyalBot is a bot made with Node.js by xRoyalPhantom (Simon)");
                 break;
             case 'coinflip':
                 var int = Math.floor((Math.random() * 2) + 1);
@@ -95,8 +99,8 @@ client.on("message", (message) => {
 
 //auth.token
 client.login(
-    
-    process.env.DJS_TOKEN
+    "OTUwMjQ2ODQ2ODA1MTkyNzA0.YiWIVw.Tqwb4l8C74FH0-IzJkr9-8GIyss"
+    //process.env.DJS_TOKEN
     );
 
 
