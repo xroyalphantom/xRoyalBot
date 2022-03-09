@@ -43,8 +43,8 @@ client.on("message", (message) => {
                 .end((err, res) => {
                     if (err) { return console.log(err); }
                     message.lineReply(
-                        "ETH price in USD is $ + res.body.USD\n" +
-                        "ETH price in CAD is $ + res.body.CAD"
+                        "ETH price in USD is $" + res.body.USD + "\n" +
+                        "ETH price in CAD is $" + res.body.CAD
                         );
                 });
                 break;
