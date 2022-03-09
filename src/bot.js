@@ -48,6 +48,17 @@ client.on("message", (message) => {
                         );
                 });
                 break;
+            case 'gas':
+                superagent.get('https://ethgas.watch/api/gas')
+                .end((err, res) => {
+                    if (err) { return console.log(err); }
+                    message.lineReply(
+                        "Slow: " + res.body.slow.gwei + " Gwei\n" +
+                        "Normal: " + res.body.normal.gwei + " Gwei\n" +
+                        "Fast: " + res.body.fast.gwei + " Gwei"
+                        );
+                });
+                break;
             case 'ocr':
                 if (message.attachments.size > 0) {
                     message.attachments.forEach((attachment) => {
