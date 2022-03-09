@@ -25,7 +25,8 @@ client.on("message", (message) => {
                     "Available Commands:\n\n" +
                     "!about - Information about xRoyalBot\n" +
                     "!coinflip - Heads or Tails\n" +
-                    "!ocr - Include image after the command to anaylze text present in the image\n"
+                    "!ocr - Include image after the command to anaylze text present in the image\n" +
+                    "!eth - Returns current ETH price in CAD and USD"
                     );
                 break;
             case 'about':
@@ -41,8 +42,10 @@ client.on("message", (message) => {
                 .query({})
                 .end((err, res) => {
                     if (err) { return console.log(err); }
-                    message.lineReply("ETH price in USD is $" + res.body.USD);
-                    message.lineReply("ETH price in CAD is $" + res.body.CAD);
+                    message.lineReply(
+                        "ETH price in USD is $ + res.body.USD\n" +
+                        "ETH price in CAD is $ + res.body.CAD"
+                        );
                 });
                 break;
             case 'ocr':
