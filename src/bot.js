@@ -53,9 +53,9 @@ client.on("message", (message) => {
                 .end((err, res) => {
                     if (err) { return console.log(err); }
                     message.lineReply(
-                        "Slow: " + res.body.slow.gwei + " Gwei\n" +
-                        "Normal: " + res.body.normal.gwei + " Gwei\n" +
-                        "Fast: " + res.body.fast.gwei + " Gwei"
+                        "Slow: " + res.body.slow + " Gwei\n" +
+                        "Normal: " + res.body.normal + " Gwei\n" +
+                        "Fast: " + res.body.fast + " Gwei"
                         );
                 });
                 break;
@@ -111,7 +111,7 @@ client.on("message", (message) => {
 
 //auth.token
 client.login(
-    
-    process.env.DJS_TOKEN
+    "OTUwMjQ2ODQ2ODA1MTkyNzA0.YiWIVw.hqmAHgTnR5E1zvHH0-Se53VWCH8"
+    //process.env.DJS_TOKEN
     );
   
