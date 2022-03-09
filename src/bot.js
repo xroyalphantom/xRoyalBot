@@ -111,7 +111,7 @@ client.on("message", (message) => {
 
 //auth.token
 client.login(
-    "OTUwMjQ2ODQ2ODA1MTkyNzA0.YiWIVw.hqmAHgTnR5E1zvHH0-Se53VWCH8"
-    //process.env.DJS_TOKEN
+    
+    process.env.DJS_TOKEN
     );
   
