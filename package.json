@@ -5,12 +5,13 @@
   "main": "bot.js",
   "author": "xRoyalPhantom",
   "dependencies": {
-    "@tensorflow-models/mobilenet": "^1.0.1",
-    "@tensorflow/tfjs": "^1.0.1",
+    "@tensorflow-models/mobilenet": "^2.1.0",
+    "@tensorflow/tfjs": "^3.14.0",
     "@tensorflow/tfjs-node": "^3.14.0",
     "canvas": "^2.9.0",
     "discord-reply": "^0.1.2",
     "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
+    "superagent": "^7.1.1",
     "tesseract.js": "^2.1.5",
     "typescript": "^4.6.2",
     "winston": "^3.6.0"

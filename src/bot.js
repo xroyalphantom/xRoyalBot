@@ -1,15 +1,14 @@
 var Discord = require('discord.js');
 var Tesseract = require("tesseract.js");
-var mobilenet = require('@tensorflow-models/mobilenet');
+const tf = require('@tensorflow/tfjs');
+const mobilenet = require('@tensorflow-models/mobilenet');
+const tfnode = require('@tensorflow/tfjs-node');
+const superagent = require('superagent');
 require('discord-reply');
 
-let model;
-
-mobilenet.load().then((m) => {
-    model = m;
-});
-
 var client = new Discord.Client();
+
+
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
@@ -37,6 +36,15 @@ client.on("message", (message) => {
                 if(int === 1) message.lineReply("Heads");
                 else message.lineReply("Tails");
                 break;
+            case 'eth':
+                superagent.get('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD,CAD')
+                .query({})
+                .end((err, res) => {
+                    if (err) { return console.log(err); }
+                    message.lineReply("ETH price in USD is $" + res.body.USD);
+                    message.lineReply("ETH price in CAD is $" + res.body.CAD);
+                });
+                break;
             case 'ocr':
                 if (message.attachments.size > 0) {
                     message.attachments.forEach((attachment) => {
@@ -58,12 +66,14 @@ client.on("message", (message) => {
                 break;
             case 'recognize':
                 if (message.attachments.size > 0) {
-
                     message.lineReply("Not yet implemented");
                     /*
                     message.attachments.forEach((attachment) => {
-                        var ImageUrl = attachment.url;
-                        model.classify(ImageUrl).then((predictions) => {
+                        const imageUrl = attachment.url;
+                        console.log(imageUrl);
+                        const tfimage = tfnode.node.decodeImage(imageUrl); //Expected image (BMP, JPEG, PNG, or GIF), but got unsupported 
+                        const mobilenetModel = mobilenet.load();
+                        mobilenetModel.classify(tfimage).then((predictions) => {
                             const result = predictions.sort((a, b) => a > b)[0];
                             var text = "";
                             if (result.probability > 0.2) {
