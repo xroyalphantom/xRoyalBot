@@ -22,21 +22,12 @@ client.on("message", (message) => {
         args = args.splice(1);
         switch(cmd) {
             case 'help':
-                /*
-                message.lineReply(
-                    "Available Commands:\n\n" +
-                    "!about - Information about xRoyalBot\n" +
-                    "!coinflip - Heads or Tails\n" +
-                    "!ocr - Include image after the command to anaylze text present in the image\n" +
-                    "!eth - Returns current ETH price in CAD and USD"
-                    );
-                */
                 const helpEmbed = new MessageEmbed()
                     .setColor('#0099ff')
                     .setTitle('xRoyalBot')
                     .setURL('https://github.com/xroyalphantom/xRoyalBot')
-                    .setDescription('')
-                    .setThumbnail('attachment://xrb.png')
+                    //.setDescription('')
+                    //.setThumbnail('attachment://xrb.png')
                     .addFields(
                         { 
                             name:   'Available Commands', 
@@ -53,8 +44,26 @@ client.on("message", (message) => {
                     //.setImage('https://i.imgur.com/AfFp7pu.png')
                     //.setTimestamp()
                     .setFooter('©SimonSWE - SimonSWE.com');
-                
                 message.channel.send(helpEmbed);
+                break;
+            case 'rules':
+                const rulesEmbed = new MessageEmbed()
+                    .setColor('#0099ff')
+                    .setTitle('xRoyalBot')
+                    .setURL('https://github.com/xroyalphantom/xRoyalBot')
+                    .addFields(
+                        { 
+                            name:   'Rules', 
+                            value:  '1. Be nice\n' +
+                                    '2. Be Respectful, no hate speech\n' +
+                                    '3. Do not spam\n' +
+                                    '4. No NSFW content\n' +
+                                    '5. If anyone is making someone else uncomfortable, reach out to any moderator'
+                        },
+                        { name: '\u200B', value: '\u200B' },
+                    )
+                    .setFooter('©SimonSWE - SimonSWE.com');
+                message.channel.send(rulesEmbed);
                 break;
             case 'about':
                 message.lineReply("xRoyalBot is a bot made with Node.js by xRoyalPhantom (Simon). Visit SimonSWE.com for more information on him!");
