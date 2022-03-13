@@ -1,6 +1,6 @@
 var Discord = require('discord.js');
 var Tesseract = require("tesseract.js");
-const { MessageEmbed } = require('discord.js');
+const { MessageAttachment, MessageEmbed } = require('discord.js');
 const tf = require('@tensorflow/tfjs');
 const mobilenet = require('@tensorflow-models/mobilenet');
 const tfnode = require('@tensorflow/tfjs-node');
@@ -33,26 +33,31 @@ client.on("message", (message) => {
                 */
                 const helpEmbed = new MessageEmbed()
                     .setColor('#0099ff')
-                    .setTitle('xroyaltester')
-                    .setURL('https://discord.js.org/')
-                    .setAuthor({ name: 'Some name', iconURL: 'https://i.imgur.com/AfFp7pu.png', url: 'https://discord.js.org' })
-                    .setDescription('Some description here')
-                    .setThumbnail('https://i.imgur.com/AfFp7pu.png')
+                    .setTitle('xRoyalBot')
+                    .setURL('https://github.com/xroyalphantom/xRoyalBot')
+                    .setDescription('')
+                    .setThumbnail('attachment://xrb.png')
                     .addFields(
-                        { name: 'Regular field title', value: 'Some value here' },
+                        { 
+                            name:   'Available Commands', 
+                            value:  '!about - Information about xRoyalBot\n' +
+                                    '!coinflip - Heads or Tails\n' +
+                                    '!ocr - Include image after the command to anaylze text present in the image\n' +
+                                    '!eth - Returns current ETH price in CAD and USD\n' +
+                                    ''
+                        },
                         { name: '\u200B', value: '\u200B' },
-                        { name: 'Inline field title', value: 'Some value here', inline: true },
-                        { name: 'Inline field title', value: 'Some value here', inline: true },
+                        //{ name: 'Inline field title', value: 'Some value here', inline: true },
                     )
-                    .addField('Inline field title', 'Some value here', true)
-                    .setImage('https://i.imgur.com/AfFp7pu.png')
-                    .setTimestamp()
-                    .setFooter({ text: 'Some footer text here', iconURL: 'https://i.imgur.com/AfFp7pu.png' });
+                    //.addField('Inline field title', 'Some value here', true)
+                    //.setImage('https://i.imgur.com/AfFp7pu.png')
+                    //.setTimestamp()
+                    .setFooter('©SimonSWE - SimonSWE.com');
                 
-                message.channel.send({ embeds: [helpEmbed] });
+                message.channel.send(helpEmbed);
                 break;
             case 'about':
-                message.lineReply("xRoyalBot is a bot made with Node.js by xRoyalPhantom (Simon)");
+                message.lineReply("xRoyalBot is a bot made with Node.js by xRoyalPhantom (Simon). Visit SimonSWE.com for more information on him!");
                 break;
             case 'coinflip':
                 var int = Math.floor((Math.random() * 2) + 1);
