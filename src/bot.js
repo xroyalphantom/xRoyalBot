@@ -1,5 +1,6 @@
 var Discord = require('discord.js');
 var Tesseract = require("tesseract.js");
+const { MessageEmbed } = require('discord.js');
 const tf = require('@tensorflow/tfjs');
 const mobilenet = require('@tensorflow-models/mobilenet');
 const tfnode = require('@tensorflow/tfjs-node');
@@ -21,6 +22,7 @@ client.on("message", (message) => {
         args = args.splice(1);
         switch(cmd) {
             case 'help':
+                /*
                 message.lineReply(
                     "Available Commands:\n\n" +
                     "!about - Information about xRoyalBot\n" +
@@ -28,6 +30,26 @@ client.on("message", (message) => {
                     "!ocr - Include image after the command to anaylze text present in the image\n" +
                     "!eth - Returns current ETH price in CAD and USD"
                     );
+                */
+                const helpEmbed = new MessageEmbed()
+                    .setColor('#0099ff')
+                    .setTitle('xroyaltester')
+                    .setURL('https://discord.js.org/')
+                    .setAuthor({ name: 'Some name', iconURL: 'https://i.imgur.com/AfFp7pu.png', url: 'https://discord.js.org' })
+                    .setDescription('Some description here')
+                    .setThumbnail('https://i.imgur.com/AfFp7pu.png')
+                    .addFields(
+                        { name: 'Regular field title', value: 'Some value here' },
+                        { name: '\u200B', value: '\u200B' },
+                        { name: 'Inline field title', value: 'Some value here', inline: true },
+                        { name: 'Inline field title', value: 'Some value here', inline: true },
+                    )
+                    .addField('Inline field title', 'Some value here', true)
+                    .setImage('https://i.imgur.com/AfFp7pu.png')
+                    .setTimestamp()
+                    .setFooter({ text: 'Some footer text here', iconURL: 'https://i.imgur.com/AfFp7pu.png' });
+                
+                message.channel.send({ embeds: [helpEmbed] });
                 break;
             case 'about':
                 message.lineReply("xRoyalBot is a bot made with Node.js by xRoyalPhantom (Simon)");
