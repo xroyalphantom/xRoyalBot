@@ -37,7 +37,8 @@ client.on("message", (message) => {
                                     '!eth - Returns current ETH price in CAD and USD\n' +
                                     ''
                         },
-                        { name: '\u200B', value: '\u200B' },
+                        { name: '', value: '\n\n\n'},
+                        //{ name: '\u200B', value: '\u200B' },
                         //{ name: 'Inline field title', value: 'Some value here', inline: true },
                     )
                     //.addField('Inline field title', 'Some value here', true)
@@ -60,7 +61,8 @@ client.on("message", (message) => {
                                     '4. No NSFW content\n' +
                                     '5. If anyone is making someone else uncomfortable, reach out to any moderator'
                         },
-                        { name: '\u200B', value: '\u200B' },
+                        { name: '', value: '\n\n\n'},
+                        //{ name: '\u200B', value: '\u200B' },
                     )
                     .setFooter('©SimonSWE - SimonSWE.com');
                 message.channel.send(rulesEmbed);
