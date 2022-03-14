@@ -37,7 +37,7 @@ client.on("message", (message) => {
                                     '!eth - Returns current ETH price in CAD and USD\n' +
                                     ''
                         },
-                        { name: '', value: '\n\n\n'},
+                        { name: '\n', value: '\n\n'},
                         //{ name: '\u200B', value: '\u200B' },
                         //{ name: 'Inline field title', value: 'Some value here', inline: true },
                     )
@@ -61,11 +61,47 @@ client.on("message", (message) => {
                                     '4. No NSFW content\n' +
                                     '5. If anyone is making someone else uncomfortable, reach out to any moderator'
                         },
-                        { name: '', value: '\n\n\n'},
+                        { name: '\n', value: '\n\n'},
                         //{ name: '\u200B', value: '\u200B' },
                     )
                     .setFooter('©SimonSWE - SimonSWE.com');
                 message.channel.send(rulesEmbed);
+                break;
+            case 'socials':
+                const socialsEmbed = new MessageEmbed()
+                    .setColor('#0099ff')
+                    .setTitle('xRoyalBot')
+                    .setURL('https://github.com/xroyalphantom/xRoyalBot')
+                    .addFields(
+                        { 
+                            name:   'Twitch', 
+                            value:  'https://www.twitch.tv/xroyalphantom \n'
+                        },
+                        { 
+                            name:   'Twitter', 
+                            value:  'https://twitter.com/xRoyalPhantom1 \n'
+                        },
+                        { 
+                            name:   'TikTok', 
+                            value:  'https://www.tiktok.com/@xroyalphantom \n'
+                        },
+                        { 
+                            name:   'Instagram', 
+                            value:  'https://www.instagram.com/SimonMLG \n'
+                        },
+                        { 
+                            name:   'GitHub', 
+                            value:  'https://github.com/xroyalphantom \n'
+                        },
+                        { 
+                            name:   'LinkedIn', 
+                            value:  'https://www.linkedin.com/in/simon-d-huang/ \n'
+                        },
+                        { name: '\n', value: '\n\n'},
+                        //{ name: '\u200B', value: '\u200B' },
+                    )
+                    .setFooter('©SimonSWE - SimonSWE.com');
+                message.channel.send(socialsEmbed);
                 break;
             case 'about':
                 message.lineReply("xRoyalBot is a bot made with Node.js by xRoyalPhantom (Simon). Visit SimonSWE.com for more information on him!");
