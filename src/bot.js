@@ -34,10 +34,8 @@ client.on("message", (message) => {
                             value:  '!about - Information about xRoyalBot\n' +
                                     '!coinflip - Heads or Tails\n' +
                                     '!ocr - Include image after the command to anaylze text present in the image\n' +
-                                    '!eth - Returns current ETH price in CAD and USD\n' +
-                                    ''
+                                    '!eth - Returns current ETH price in CAD and USD\n\n\n'
                         },
-                        { name: '\n', value: '\n\n'},
                         //{ name: '\u200B', value: '\u200B' },
                         //{ name: 'Inline field title', value: 'Some value here', inline: true },
                     )
@@ -59,9 +57,8 @@ client.on("message", (message) => {
                                     '2. Be Respectful, no hate speech\n' +
                                     '3. Do not spam\n' +
                                     '4. No NSFW content\n' +
-                                    '5. If anyone is making someone else uncomfortable, reach out to any moderator'
+                                    '5. If anyone is making someone else uncomfortable, reach out to any moderator\n\n\n'
                         },
-                        { name: '\n', value: '\n\n'},
                         //{ name: '\u200B', value: '\u200B' },
                     )
                     .setFooter('©SimonSWE - SimonSWE.com');
@@ -95,9 +92,8 @@ client.on("message", (message) => {
                         },
                         { 
                             name:   'LinkedIn', 
-                            value:  'https://www.linkedin.com/in/simon-d-huang/ \n'
+                            value:  'https://www.linkedin.com/in/simon-d-huang \n\n\n'
                         },
-                        { name: '\n', value: '\n\n'},
                         //{ name: '\u200B', value: '\u200B' },
                     )
                     .setFooter('©SimonSWE - SimonSWE.com');
