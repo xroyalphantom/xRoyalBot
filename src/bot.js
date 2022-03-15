@@ -23,7 +23,7 @@ client.on("message", (message) => {
         switch(cmd) {
             case 'help':
                 const helpEmbed = new MessageEmbed()
-                    .setColor('#0099ff')
+                    .setColor('#7B587B')
                     .setTitle('xRoyalBot')
                     .setURL('https://github.com/xroyalphantom/xRoyalBot')
                     //.setDescription('')
@@ -34,7 +34,7 @@ client.on("message", (message) => {
                             value:  '!about - Information about xRoyalBot\n' +
                                     '!coinflip - Heads or Tails\n' +
                                     '!ocr - Include image after the command to anaylze text present in the image\n' +
-                                    '!eth - Returns current ETH price in CAD and USD\n\n\n'
+                                    '!eth - Returns current ETH price in CAD and USD'
                         },
                         //{ name: '\u200B', value: '\u200B' },
                         //{ name: 'Inline field title', value: 'Some value here', inline: true },
@@ -47,17 +47,17 @@ client.on("message", (message) => {
                 break;
             case 'rules':
                 const rulesEmbed = new MessageEmbed()
-                    .setColor('#0099ff')
+                    .setColor('#7B587B')
                     .setTitle('xRoyalBot')
                     .setURL('https://github.com/xroyalphantom/xRoyalBot')
                     .addFields(
                         { 
                             name:   'Rules', 
                             value:  '1. Be nice\n' +
-                                    '2. Be Respectful, no hate speech\n' +
+                                    '2. Be respectful, no hate speech\n' +
                                     '3. Do not spam\n' +
                                     '4. No NSFW content\n' +
-                                    '5. If anyone is making someone else uncomfortable, reach out to any moderator\n\n\n'
+                                    '5. If anyone is making someone else uncomfortable, reach out to any moderator'
                         },
                         //{ name: '\u200B', value: '\u200B' },
                     )
@@ -66,33 +66,37 @@ client.on("message", (message) => {
                 break;
             case 'socials':
                 const socialsEmbed = new MessageEmbed()
-                    .setColor('#0099ff')
+                    .setColor('#7B587B')
                     .setTitle('xRoyalBot')
                     .setURL('https://github.com/xroyalphantom/xRoyalBot')
                     .addFields(
                         { 
                             name:   'Twitch', 
-                            value:  'https://www.twitch.tv/xroyalphantom \n'
+                            value:  'https://www.twitch.tv/xroyalphantom'
                         },
                         { 
                             name:   'Twitter', 
-                            value:  'https://twitter.com/xRoyalPhantom1 \n'
+                            value:  'https://twitter.com/xRoyalPhantom1'
                         },
                         { 
                             name:   'TikTok', 
-                            value:  'https://www.tiktok.com/@xroyalphantom \n'
+                            value:  'https://www.tiktok.com/@xroyalphantom'
                         },
                         { 
                             name:   'Instagram', 
-                            value:  'https://www.instagram.com/SimonMLG \n'
+                            value:  'https://www.instagram.com/SimonMLG'
+                        },
+                        { 
+                            name:   'Website', 
+                            value:  'http://SimonSWE.com'
                         },
                         { 
                             name:   'GitHub', 
-                            value:  'https://github.com/xroyalphantom \n'
+                            value:  'https://github.com/xroyalphantom'
                         },
                         { 
                             name:   'LinkedIn', 
-                            value:  'https://www.linkedin.com/in/simon-d-huang \n\n\n'
+                            value:  'https://www.linkedin.com/in/simon-d-huang'
                         },
                         //{ name: '\u200B', value: '\u200B' },
                     )
