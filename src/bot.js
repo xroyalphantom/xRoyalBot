@@ -106,6 +106,14 @@ client.on("message", async (message) => {
             case 'getroles':
                 const cheeseEmoji = '🧀';
                 const trollEmoji = '👹';
+                const monkeEmoji = '🐵';
+
+                const channel = '953343997261266974';
+
+                const cheeserRole = message.guild.roles.cache.find(role => role.name === "Cheeser");
+                const trollerRole = message.guild.roles.cache.find(role => role.name === "Troller");
+                const monkeRole = message.guild.roles.cache.find(role => role.name === "Monke");
+
                 const getRolesEmbed = new MessageEmbed()
                     .setColor('#7B587B')
                     .setTitle('xRoyalBot')
@@ -113,8 +121,9 @@ client.on("message", async (message) => {
                     .addFields(
                         { 
                             name:   'React for Roles', 
-                            value:  `Cheesers  ${cheeseEmoji}\n` +
-                                    `Trolls  ${trollEmoji}`
+                            value:  `Cheeser  ${cheeseEmoji}\n` +
+                                    `Troll  ${trollEmoji}\n` +
+                                    `Monke ${monkeEmoji}`
                         },
                         //{ name: '\u200B', value: '\u200B' },
                     )
@@ -122,14 +131,9 @@ client.on("message", async (message) => {
                 let messageEmbed = await message.channel.send(getRolesEmbed);
                 messageEmbed.react(cheeseEmoji);
                 messageEmbed.react(trollEmoji);
+                messageEmbed.react(monkeEmoji);
 
                 client.on('messageReactionAdd', async (reaction, user) => {
-                    const channel = '953343997261266974';
-                    const cheeseEmoji = '🧀';
-                    const trollEmoji = '👹';
-                    const cheeserRole = message.guild.roles.cache.find(role => role.name === "Cheeser");
-                    const trollerRole = message.guild.roles.cache.find(role => role.name === "Troller");
-                
                     if(user.bot) return;
                     else if(!reaction.message.guild) return;
                     else if(reaction.message.partial) await reaction.message.fetch();
@@ -137,18 +141,13 @@ client.on("message", async (message) => {
                 
                     if(reaction.message.channel.id == channel) {
                         if(reaction.emoji.name === cheeseEmoji) await reaction.message.guild.members.cache.get(user.id).roles.add(cheeserRole);
+                        else if(reaction.emoji.name === monkeEmoji) await reaction.message.guild.members.cache.get(user.id).roles.add(monkeRole);
                         else if(reaction.emoji.name === trollEmoji) await reaction.message.guild.members.cache.get(user.id).roles.add(trollerRole);
                     }
                     else return;
                 });
                 
                 client.on('messageReactionRemove', async (reaction, user) => {
-                    const channel = '953343997261266974';
-                    const cheeseEmoji = '🧀';
-                    const trollEmoji = '👹';
-                    const cheeserRole = message.guild.roles.cache.find(role => role.name === "Cheeser");
-                    const trollerRole = message.guild.roles.cache.find(role => role.name === "Troller");
-                
                     if(user.bot) return;
                     else if(!reaction.message.guild) return;
                     else if(reaction.message.partial) await reaction.message.fetch();
@@ -157,10 +156,11 @@ client.on("message", async (message) => {
                     if(reaction.message.channel.id == channel) {
                         if(reaction.emoji.name === cheeseEmoji) await reaction.message.guild.members.cache.get(user.id).roles.remove(cheeserRole);
                         else if(reaction.emoji.name === trollEmoji) await reaction.message.guild.members.cache.get(user.id).roles.remove(trollerRole);
+                        else if(reaction.emoji.name === monkeEmoji) await reaction.message.guild.members.cache.get(user.id).roles.remove(monkeRole);
                     }
                     else return;
                 });
-
+                
                 break;
             case 'about':
                 message.lineReply("xRoyalBot is a bot made with Node.js by xRoyalPhantom (Simon). Visit SimonSWE.com for more information on him!");
