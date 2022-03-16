@@ -15,7 +15,7 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on("message", (message) => {
+client.on("message", async (message) => {
     if (message.content.substring(0, 1) == '!') {
         var args = message.content.substring(1).split(' ');
         var cmd = args[0];
@@ -113,8 +113,8 @@ client.on("message", (message) => {
                     .addFields(
                         { 
                             name:   'React for Roles', 
-                            value:  'Cheesers ${cheeseEmoji}\n' +
-                                    'Trolls ${trollEmoji}'
+                            value:  `Cheesers  ${cheeseEmoji}\n` +
+                                    `Trolls  ${trollEmoji}`
                         },
                         //{ name: '\u200B', value: '\u200B' },
                     )
@@ -122,6 +122,45 @@ client.on("message", (message) => {
                 let messageEmbed = await message.channel.send(getRolesEmbed);
                 messageEmbed.react(cheeseEmoji);
                 messageEmbed.react(trollEmoji);
+
+                client.on('messageReactionAdd', async (reaction, user) => {
+                    const channel = '953343997261266974';
+                    const cheeseEmoji = '🧀';
+                    const trollEmoji = '👹';
+                    const cheeserRole = message.guild.roles.cache.find(role => role.name === "Cheeser");
+                    const trollerRole = message.guild.roles.cache.find(role => role.name === "Troller");
+                
+                    if(user.bot) return;
+                    else if(!reaction.message.guild) return;
+                    else if(reaction.message.partial) await reaction.message.fetch();
+                    else if(reaction.partial) await reaction.fetch();
+                
+                    if(reaction.message.channel.id == channel) {
+                        if(reaction.emoji.name === cheeseEmoji) await reaction.message.guild.members.cache.get(user.id).roles.add(cheeserRole);
+                        else if(reaction.emoji.name === trollEmoji) await reaction.message.guild.members.cache.get(user.id).roles.add(trollerRole);
+                    }
+                    else return;
+                });
+                
+                client.on('messageReactionRemove', async (reaction, user) => {
+                    const channel = '953343997261266974';
+                    const cheeseEmoji = '🧀';
+                    const trollEmoji = '👹';
+                    const cheeserRole = message.guild.roles.cache.find(role => role.name === "Cheeser");
+                    const trollerRole = message.guild.roles.cache.find(role => role.name === "Troller");
+                
+                    if(user.bot) return;
+                    else if(!reaction.message.guild) return;
+                    else if(reaction.message.partial) await reaction.message.fetch();
+                    else if(reaction.partial) await reaction.fetch();
+                
+                    if(reaction.message.channel.id == channel) {
+                        if(reaction.emoji.name === cheeseEmoji) await reaction.message.guild.members.cache.get(user.id).roles.remove(cheeserRole);
+                        else if(reaction.emoji.name === trollEmoji) await reaction.message.guild.members.cache.get(user.id).roles.remove(trollerRole);
+                    }
+                    else return;
+                });
+
                 break;
             case 'about':
                 message.lineReply("xRoyalBot is a bot made with Node.js by xRoyalPhantom (Simon). Visit SimonSWE.com for more information on him!");
@@ -200,47 +239,6 @@ client.on("message", (message) => {
                 }
         }
     } 
-});
-
-
-
-
-client.on('messageReactionAdd', async (reaction, user) => {
-    const channel = '953343997261266974';
-    const cheeseEmoji = '🧀';
-    const trollEmoji = '👹';
-    const cheeserRole = reaction.guild.roles.find(role => role.name === "Cheeser");
-    const trollerRole = reaction.guild.roles.find(role => role.name === "Troller");
-
-    if(user.bot) return;
-    else if(!reaction.message.guild) return;
-    else if(reaction.message.partial) await reaction.message.fetch();
-    else if(reaction.partial) await reaction.fetch();
-
-    if(reaction.message.channel.id == channel) {
-        if(reaction.emoji.name === cheeseEmoji) await reaction.message.guild.members.cache.get(user.id).roles.assign(cheeserRole);
-        else if(reaction.emoji.name === trollEmoji) await reaction.message.guild.members.cache.get(user.id).roles.assign(trollerRole);
-    }
-    else return;
-});
-
-client.on('messageReactionRemove', async (reaction, user) => {
-    const channel = '953343997261266974';
-    const cheeseEmoji = '🧀';
-    const trollEmoji = '👹';
-    const cheeserRole = reaction.guild.roles.find(role => role.name === "Cheeser");
-    const trollerRole = reaction.guild.roles.find(role => role.name === "Troller");
-
-    if(user.bot) return;
-    else if(!reaction.message.guild) return;
-    else if(reaction.message.partial) await reaction.message.fetch();
-    else if(reaction.partial) await reaction.fetch();
-
-    if(reaction.message.channel.id == channel) {
-        if(reaction.emoji.name === cheeseEmoji) await reaction.message.guild.members.cache.get(user.id).roles.remove(cheeserRole);
-        else if(reaction.emoji.name === trollEmoji) await reaction.message.guild.members.cache.get(user.id).roles.remove(trollerRole);
-    }
-    else return;
 });
   
 
